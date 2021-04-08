@@ -1,0 +1,61 @@
+//	主体
+.basicFooter {
+	font-size: 12px;
+	line-height: 2;
+	background: var(--color1a1a1a);
+	min-width: 1280px;
+	//	基本信息
+	.basicFooterInfo {
+		padding: 80px 100px;
+		box-sizing: border-box;
+		margin: auto;
+		width: 100%;
+		max-width: 1280px;
+		//	文本
+		.static {
+			width: 350px;
+			margin: 0 0 0 5px;
+			color: var(--white);
+			//	白色较大文字
+			.subTitle {
+				font-size: 14px;
+			}
+
+			//	灰色的描述，小字
+			.subDescription {
+				margin: 10px 0 20px;
+				color: rgba(255, 255, 255, 0.5);
+			}
+		}
+	}
+
+	@media screen and  (max-width: 750px) {
+		min-width: 0;
+		.basicFooterInfo {
+			width: 100%;
+			min-width: 0;
+			padding: 0;
+			line-height: 2;
+
+			.static {
+				text-align: center;
+				width: auto;
+				padding: 0.72rem 0;
+				font-size: 0.26rem;
+				line-height: 0.4rem;
+				margin-left: 0;
+
+				& > p:nth-child(3) {
+					margin-top: .16rem;
+				}
+
+				.subDescription {
+					font-size: 0.2rem;
+					margin: .16rem 0 0;
+					line-height: 0.32rem;
+					color: rgba(255, 255, 255, 0.5)
+				}
+			}
+		}
+	}
+}

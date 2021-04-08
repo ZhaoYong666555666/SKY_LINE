@@ -1,0 +1,185 @@
+//	菜单列表pc端
+.menuPC {
+	float: right;
+	padding-right: 10px;
+	//	菜单的每一项li
+	.menuListItem {
+		float: left;
+		font-size: 14px;
+		padding: 0 25px;
+		font-weight: 500;
+		position: relative;
+		cursor: pointer;
+		//	💡有问题，对齐方式如果是按vertical-middle，则忽略了行高。所以这样是不对的
+		line-height: 67px;
+		height: 64px;
+		display: inline-block;
+		//	最后两个元素，是zn/en
+		&:nth-last-child(2), &:nth-last-child(1) {
+			padding: 0 10px;
+			position: relative;
+		}
+
+		//	无论是zn还是en，是倒数第二个元素，斜线
+		&:nth-last-child(2) {
+			//	💡明显是白色好看
+			a {
+				color: var(--color06f) !important;
+			}
+
+			&::before {
+				content: "/";
+				display: block;
+				position: absolute;
+				top: 0;
+				height: 0;
+				right: -2px;
+				font-size: 12px;
+				color: var(--color999);
+			}
+		}
+
+		//	底部横线
+		&::after {
+			content: '';
+			display: block;
+			border-radius: 2px;
+			position: absolute;
+			height: 3px;
+			line-height: 0;
+			background-color: transparent;
+			width: 70%;
+			left: 50%;
+			bottom: 0;
+			transform: translateX(-50%) scaleX(0.5);
+			transition: transform .3s;
+		}
+
+		//	鼠标浮于上方
+		&:hover {
+			//	底部横线-激活态
+			&::after {
+				transform: translateX(-50%) scaleX(1);
+				background-color: var(--color06f);
+			}
+
+			.navLevel2 {
+				display: block;
+			}
+		}
+
+		//	链接
+		& > a {
+			color: rgba(0, 0, 0, 0.6);
+		}
+	}
+
+	//	激活的颜色
+	.activeColor, .menuListItem:hover > a {
+		color: var(--color06f);
+
+		a {
+			color: var(--color06f);
+		}
+
+		&::after {
+			transform: translateX(-50%) scaleX(1);
+			background-color: var(--color06f);
+		}
+
+		//	最后两个没有横线
+		&:nth-last-child(2)::after, &:nth-last-child(1)::after {
+			display: none;
+		}
+	}
+
+	//	是顶部，并且在首页
+	&.isTopAndHome {
+		.menuListItem > a {
+			color: rgba(255, 255, 255, 0.7);
+		}
+
+		//	激活的项目
+		& .activeColor {
+			& > a {
+				color: var(--white)
+			}
+
+			&::after {
+				transform: translateX(-50%) scaleX(1);
+				background-color: var(--white);
+			}
+		}
+	}
+
+	//	子列表
+	.navLevel2 {
+		display: none;
+		width: 150%;
+		position: absolute;
+		left: 50%;
+		margin-left: -75%;
+		top: 64px;
+		background-color: var(--white);
+		font-size: 14px;
+		text-align: center;
+		line-height: 52px;
+
+
+		& > dd {
+			text-align: center;
+			position: relative;
+
+			a {
+				display: block;
+				color: rgba(0, 0, 0, 0.6);
+				cursor: pointer;
+			}
+
+			//	路由匹配，激活的二级目录，与hover效果相当
+			&:hover, &.navLevel2Active {
+				background: var(--colorf6f6f6);
+
+				& > a {
+					color: var(--black);
+					background-color: var(--colorf9);
+				}
+			}
+
+			//	激活的3级目录不展开						问题4
+			&.navLevel2Active {
+				.navLevel3 {
+					display: none;
+				}
+			}
+
+			//	hover展开3级目录
+			&:hover {
+				.navLevel3 {
+					display: block;
+				}
+			}
+
+			//	最底层列表
+			.navLevel3 {
+				background: var(--white);
+				position: absolute;
+				width: 100%;
+				left: 100%;
+				top: 0;
+				display: none;
+
+				dd {
+					//	路由匹配，激活的三级目录，与hover效果相当			问题4
+					&.navLevel3Active, &:hover {
+						background: var(--colorf6f6f6);
+
+						a {
+							color: var(--color06f);
+						}
+					}
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,33 @@
+.crumb {
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 4.2857;
+	word-wrap: break-word;
+	word-break: break-all;
+
+	.link {
+		color: rgba(0, 0, 0, 0.5)
+	}
+
+	.arrows {
+		color: rgba(0, 0, 0, 1);
+		margin: 0 8px;
+	}
+
+	.subLink {
+		color: var(--black);
+		cursor: pointer;
+	}
+}
+
+@media screen and (max-width: 750px) {
+	.crumb {
+		font-size: 0.22rem;
+		padding: 0.2rem 0;
+		line-height: 2.1;
+
+		.arrows {
+			margin: 0 0.08rem;
+		}
+	}
+}
